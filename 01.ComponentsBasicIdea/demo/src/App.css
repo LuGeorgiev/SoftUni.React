@@ -44,3 +44,7 @@
 .book-article{
   color:brown;
 }
+
+.some-class {
+  text-decoration: underline;
+}

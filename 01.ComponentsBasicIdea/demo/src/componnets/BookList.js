@@ -1,29 +1,48 @@
 import { Component } from 'react';
 import Book from './Book';
+import bookService from '../services/bookService';
 
 class BookList extends Component {
     constructor(props){
         super(props);
+
+        this.state = {
+            books:[]
+        }
     } 
 
     bookClicked(title){
-        console.log(`The book ${title} has been added to absket`);
+        console.log(`The book ${title} has been added to basket.`);
+    }
+
+    componentDidMount() {
+        bookService.getAll()
+            .then(books => {
+                this.setState(() => ({ books }))
+            });
     }
 
     render() {
-        return (
-            <div>
-                <h2>Our book collection</h2>
+        if (this.state.books.length === 0) {
+              return <span>Loading books...</span>  
+        }
 
-                { this.props.books.map(book => {
-                    return <Book 
-                        title={book.title} 
-                        description={book.description} 
-                        //clickHandler={this.bookClicked.bind(this, book.title)}
-                        clickHandler={() => this.bookClicked(book.title)}
+        return (
+            <div className="book-list">
+                <h2> Our Book Collection</h2>
+
+                {this.state?.books?.map((x, index) => 
+                    <Book
+                        key={x._id}
+                        title={x.title}
+                        description={x.description}
+                        // clickHandler={this.bookClicked.bind(this, x.title)} 
+                        clickHandler={() => this.bookClicked(x.title)}
+                        author={x.author}
                     />
-                })}            
-            </div>    
+                )}
+
+            </div>
         )
     }
 }
