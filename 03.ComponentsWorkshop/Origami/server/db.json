@@ -1,0 +1,24 @@
+{
+    "posts":[
+        {
+            "id":1,
+            "content": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat beatae doloribus odit, ut itaque aut excepturi rem numquam reprehenderit sapiente placeat facere, minima hic tempore ratione, quod eaque perspiciatis enim!",
+            "author": "Pesho"
+        },
+        {
+            "id":2,
+            "content": "Repellat beatae doloribus odit, ut itaque aut excepturi rem numquam reprehenderit sapiente placeat facere, minima hic tempore ratione, quod eaque perspiciatis enim!",
+            "author": "Maria"
+        },
+        {
+            "id":3,
+            "content": "amet consectetur adipisicing elit. Repellat beatae doloribus odit, ut itaque aueaque perspiciatis enim!",
+            "author": "Gosho"
+        },
+        {
+            "id":4,
+            "content": "No contet",
+            "author": "Gruio"
+        }
+    ]
+}
