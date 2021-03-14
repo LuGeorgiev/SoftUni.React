@@ -1,4 +1,8 @@
 import {Component} from 'react';
+import { Button, Box } from '@material-ui/core';
+import ClearIcon from '@material-ui/icons/Clear';
+import { AccessAlarm,  } from '@material-ui/icons';
+import CancelPresentationRoundedIcon from '@material-ui/icons/CancelPresentationRounded';
 
 class Counter extends Component{
     constructor(props){
@@ -21,10 +25,23 @@ class Counter extends Component{
         return (
             <div className="counter">
                 <h3>Book Counter</h3>
-                <button onClick={(e) => this.decrementCounter(e)}>-</button>
+                <Box component="span" m={1} color="text.primary">
+                    <Button 
+                        variant="outlined"
+                        onClick={(e) => this.decrementCounter(e)}
+                    />
+                </Box>
                 <span>{this.state.count}</span>
                 <button onClick={(e) => this.setState({count:this.state.count + 1})}>+</button>
-                <button onClick={this.resetCounter.bind(this)}>Reset</button>
+                <Button 
+                    variant="outlined" 
+                    color="primary" 
+                    onClick={this.resetCounter.bind(this)}
+                    size="small"
+                    startIcon={<ClearIcon/>}
+                >
+                    Reset
+                </Button>
             </div>
         );
     }

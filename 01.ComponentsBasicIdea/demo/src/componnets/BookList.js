@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import Book from './Book';
 import bookService from '../services/bookService';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 class BookList extends Component {
     constructor(props){
@@ -24,7 +25,7 @@ class BookList extends Component {
 
     render() {
         if (this.state.books.length === 0) {
-              return <span>Loading books...</span>  
+              return  <CircularProgress />  
         }
 
         return (
