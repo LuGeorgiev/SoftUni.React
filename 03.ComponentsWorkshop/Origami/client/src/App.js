@@ -65,7 +65,7 @@ class App extends Component {
                     <Route path="/" exact>
                         <Main posts={this.getPosts()} />
                     </Route>
-                    <Route path="/about" component={About}/>
+                    <Route path="/about/:name" component={About}/>
                     <Route path="/contact-us" render={ContactUs}/>
                     <Route render={(props) => <h1 className="main-wrapper">Default page. Without path</h1>}/>                    
                 </Switch>
