@@ -1,6 +1,8 @@
 ﻿using System.Text;
 using FitChallenge.Server.Data;
 using FitChallenge.Server.Data.Models;
+using FitChallenge.Server.Data.Seed;
+using FitChallenge.Server.Infrastructure.Filters;
 using FitChallenge.Server.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -61,12 +63,16 @@ namespace FitChallenge.Server.Infrastructure.Extensions
 
         public static IServiceCollection AddApplicationServices(this IServiceCollection sercices)
             => sercices
-                    .AddScoped<ICurrentUserService, CurrentUserService>();
+                .AddScoped<ICurrentUserService, CurrentUserService>()
+                .AddTransient<IDataSeeder, DataSeeder>();
 
         public static IServiceCollection AddSwagger(this IServiceCollection services)
             => services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "FitChallenge.Server", Version = "v1" });
             });
+
+        public static void AddApiControllers(this IServiceCollection services)
+            => services.AddControllers(opt => opt.Filters.Add<ModelOrNotFoundActionFilter>());
     }
 }
