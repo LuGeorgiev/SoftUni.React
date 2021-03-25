@@ -26,7 +26,7 @@ namespace FitChallenge.Server.Data.Seed
 
         public void SeedData()
         {
-            if (this.roleManager.Roles.Any())
+            if (!this.roleManager.Roles.Any())
             {
                 Task.Run(async () =>
                 {

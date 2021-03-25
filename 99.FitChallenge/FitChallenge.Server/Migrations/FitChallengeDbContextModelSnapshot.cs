@@ -61,6 +61,9 @@ namespace FitChallenge.Server.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
                     b.ToTable("Profiles");
                 });
 
@@ -272,16 +275,15 @@ namespace FitChallenge.Server.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("FitChallenge.Server.Data.Models.User", b =>
+            modelBuilder.Entity("FitChallenge.Server.Data.Models.Profile", b =>
                 {
-                    b.HasOne("FitChallenge.Server.Data.Models.Profile", "Profile")
-                        .WithOne("User")
-                        .HasForeignKey("FitChallenge.Server.Data.Models.User", "Id")
-                        .HasPrincipalKey("FitChallenge.Server.Data.Models.Profile", "UserId")
+                    b.HasOne("FitChallenge.Server.Data.Models.User", "User")
+                        .WithOne("Profile")
+                        .HasForeignKey("FitChallenge.Server.Data.Models.Profile", "UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Profile");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -335,9 +337,9 @@ namespace FitChallenge.Server.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("FitChallenge.Server.Data.Models.Profile", b =>
+            modelBuilder.Entity("FitChallenge.Server.Data.Models.User", b =>
                 {
-                    b.Navigation("User");
+                    b.Navigation("Profile");
                 });
 #pragma warning restore 612, 618
         }

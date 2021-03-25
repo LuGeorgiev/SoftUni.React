@@ -24,10 +24,6 @@ namespace FitChallenge.Server.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<User>()
-                .HasOne(u => u.Profile)
-                .WithOne(p => p.User)
-                .HasPrincipalKey<Profile>(p => p.UserId);
 
             base.OnModelCreating(builder);
         }

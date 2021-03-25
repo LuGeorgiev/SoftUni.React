@@ -1,4 +1,5 @@
 ﻿using FitChallenge.Server.Data;
+using FitChallenge.Server.Data.Seed;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +14,9 @@ namespace FitChallenge.Server.Infrastructure.Extensions
             var dbContext = services.ServiceProvider.GetRequiredService<FitChallengeDbContext>();
 
             dbContext.Database.Migrate();
+
+            var seeder = services.ServiceProvider.GetRequiredService<IDataSeeder>();           
+            seeder.SeedData();            
         }
 
         public static IApplicationBuilder UseSwaggerUi(this IApplicationBuilder app)

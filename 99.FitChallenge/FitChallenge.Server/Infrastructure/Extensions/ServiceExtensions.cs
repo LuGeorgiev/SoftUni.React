@@ -2,6 +2,7 @@
 using FitChallenge.Server.Data;
 using FitChallenge.Server.Data.Models;
 using FitChallenge.Server.Data.Seed;
+using FitChallenge.Server.Features.Identity;
 using FitChallenge.Server.Infrastructure.Filters;
 using FitChallenge.Server.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -64,7 +65,8 @@ namespace FitChallenge.Server.Infrastructure.Extensions
         public static IServiceCollection AddApplicationServices(this IServiceCollection sercices)
             => sercices
                 .AddScoped<ICurrentUserService, CurrentUserService>()
-                .AddTransient<IDataSeeder, DataSeeder>();
+                .AddTransient<IDataSeeder, DataSeeder>()
+                .AddScoped<IIdentityService, IdentityService>();
 
         public static IServiceCollection AddSwagger(this IServiceCollection services)
             => services.AddSwaggerGen(c =>
