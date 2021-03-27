@@ -66,7 +66,7 @@ namespace FitChallenge.Server.Infrastructure.Extensions
             => sercices
                 .AddScoped<ICurrentUserService, CurrentUserService>()
                 .AddTransient<IDataSeeder, DataSeeder>()
-                .AddScoped<IIdentityService, IdentityService>();
+                .AddScoped<ITokenGeneratorService, TokenGeneratorService>();
 
         public static IServiceCollection AddSwagger(this IServiceCollection services)
             => services.AddSwaggerGen(c =>

@@ -1,7 +1,14 @@
-﻿namespace FitChallenge.Server.Features.Identity
+﻿using System.Threading.Tasks;
+using FitChallenge.Server.Features.Identity.Models;
+
+namespace FitChallenge.Server.Features.Identity
 {
     public interface IIdentityService
     {
-        string GenerateJwtToken(string userName, string userId, string secret);
+        Task<Result> Register(RegisterRequest userInput);
+
+        Task<Result<LoginResponse>> Login(LoginRequest userInput);
+
+        Task<Result> ChangePassword(string userId, ChangePasswordRequest changePasswordInput);
     }
 }

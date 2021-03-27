@@ -12,14 +12,12 @@ namespace FitChallenge.Server.Features.Identity
     public class IdentityController :ApiController
     {
         private readonly UserManager<User> userManager;
-        private readonly AppSettings appSettings;
-        private readonly IIdentityService identityService;
+        private readonly ITokenGeneratorService TokenGeneratorService;
 
-        public IdentityController(UserManager<User> userManager, IOptions<AppSettings> options, IIdentityService identityService)
+        public IdentityController(UserManager<User> userManager, ITokenGeneratorService identityService)
         {
             this.userManager = userManager;
-            this.appSettings = options.Value;
-            this.identityService = identityService;
+            this.TokenGeneratorService = identityService;
         }
 
         [HttpPost]
@@ -54,7 +52,8 @@ namespace FitChallenge.Server.Features.Identity
                 return Unauthorized();
             }
 
-            var encryptedToken = this.identityService.GenerateJwtToken(user.UserName, user.Id, appSettings.Secret);
+            var roles = await userManager.GetRolesAsync(user);
+            var encryptedToken = this.TokenGeneratorService.GenerateJwtToken(user.UserName, user.Id, roles);
 
             return new LoginResponse { Token = encryptedToken };
         }
