@@ -9,6 +9,6 @@ namespace FitChallenge.Server.Features.Identity
 
         Task<Result<LoginResponse>> Login(LoginRequest userInput);
 
-        Task<Result> ChangePassword(string userId, ChangePasswordRequest changePasswordInput);
+        Task<Result> ChangePassword(ChangePasswordRequest changePasswordInput);
     }
 }
