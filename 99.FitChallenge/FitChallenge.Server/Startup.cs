@@ -1,3 +1,4 @@
+using System.Reflection;
 using FitChallenge.Server.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,6 +24,7 @@ namespace FitChallenge.Server
                 .AddJwtAuthentication(services.GetAppSettings(this.Configuration))
                 .AddApplicationServices()
                 .AddSwagger()
+                .AddAutoMapperProfile(Assembly.GetExecutingAssembly())
                 .AddApiControllers();            
         }
 
