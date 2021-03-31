@@ -7,6 +7,7 @@ import Header from './components/Header/Header';
 import PetDetails from './components/PetDetails/PetDetails';
 import PetEdit from './components/PetEdit/PetEdit';
 import CreatePet from './components/CreatePet/CreatePet';
+import DemoPage from './components/Demo/Demo';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                     <Route path="/pets/details/:petId" exact component={PetDetails}/>
                     <Route path="/pets/details/:petId/edit" component={PetEdit}/>
                     <Route path="/pets/create" component={CreatePet}/>
+                    <Route path="/demo" component={DemoPage}/>
                 </Switch>
             <Footer/>
         </div>
