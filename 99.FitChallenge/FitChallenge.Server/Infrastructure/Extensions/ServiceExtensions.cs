@@ -4,6 +4,7 @@ using System.Text;
 using FitChallenge.Server.Data;
 using FitChallenge.Server.Data.Models;
 using FitChallenge.Server.Data.Seed;
+using FitChallenge.Server.Features.Excercises;
 using FitChallenge.Server.Features.Identity;
 using FitChallenge.Server.Infrastructure.Filters;
 using FitChallenge.Server.Infrastructure.Mapping;
@@ -70,7 +71,8 @@ namespace FitChallenge.Server.Infrastructure.Extensions
                 .AddScoped<ICurrentUserService, CurrentUserService>()
                 .AddTransient<IDataSeeder, DataSeeder>()
                 .AddScoped<ITokenGeneratorService, TokenGeneratorService>()
-                .AddScoped<IIdentityService, IdentityService>();
+                .AddScoped<IIdentityService, IdentityService>()
+                .AddTransient<IExcerciseService, ExcerciseService>();
 
         public static IServiceCollection AddSwagger(this IServiceCollection services)
             => services.AddSwaggerGen(c =>
