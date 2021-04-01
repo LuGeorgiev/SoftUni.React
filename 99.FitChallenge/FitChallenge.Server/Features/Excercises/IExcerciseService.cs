@@ -9,6 +9,8 @@ namespace FitChallenge.Server.Features.Excercises
     {
         Task<Result<ExcerciseOutputModel>> FindById(int id);
 
+        Task<Result<IEnumerable<ExcerciseOutputModel>>> ContainsName(string name);
+
         Task<Result<IEnumerable<ExcerciseListingModel>>> GetAll();
 
         Task<Result<IEnumerable<ExcerciseListingModel>>> GetByType(ExcerciseType type);

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using FitChallenge.Server.Data.Models.Enums;
 using FitChallenge.Server.Features.Excercises.Models;
@@ -28,6 +26,11 @@ namespace FitChallenge.Server.Features.Excercises
 
             return result;
         }
+
+        [HttpGet]
+        [Route("{name}")]
+        public async Task<ActionResult<IEnumerable<ExcerciseOutputModel>>> GetByName(string name)
+            => await excerciseService.ContainsName(name);
 
         [HttpGet]
         [Route(nameof(GetAll))]

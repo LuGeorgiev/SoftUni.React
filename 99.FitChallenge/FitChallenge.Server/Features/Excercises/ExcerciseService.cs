@@ -109,6 +109,14 @@ namespace FitChallenge.Server.Features.Excercises
             return mapper.Map<ExcerciseOutputModel>(result);
         }
 
+        public async Task<Result<IEnumerable<ExcerciseOutputModel>>> ContainsName(string name)
+            => await this.mapper
+                .ProjectTo<ExcerciseOutputModel>( 
+                    db.Excercises
+                    .Where(x => x.Name.Contains(name, System.StringComparison.InvariantCultureIgnoreCase) && x.IsDeleted == false))
+                .ToListAsync();
+            
+
         public async Task<Result<IEnumerable<ExcerciseListingModel>>> GetAll()
             => await mapper.ProjectTo<ExcerciseListingModel>(this.AllByType())
             .ToListAsync();
