@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
+using static FitChallenge.Server.WebConstants.Controllers;
+
 namespace FitChallenge.Server.Features.Excercises
 {
     [AllowAnonymous]
@@ -19,7 +21,7 @@ namespace FitChallenge.Server.Features.Excercises
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route(Id)]
         public async Task<ActionResult<ExcerciseOutputModel>> Get(int id)
         {
             var result = await excerciseService.FindById(id);
@@ -28,7 +30,7 @@ namespace FitChallenge.Server.Features.Excercises
         }
 
         [HttpGet]
-        [Route("{name}")]
+        [Route(nameof(GetByName))]
         public async Task<ActionResult<IEnumerable<ExcerciseOutputModel>>> GetByName(string name)
             => await excerciseService.ContainsName(name);
 
@@ -67,7 +69,7 @@ namespace FitChallenge.Server.Features.Excercises
         }
 
         [HttpDelete]
-        [Route("{id}")]
+        [Route(Id)]
         public async Task<ActionResult<Result>> Delete(int id)
         {
             var result = await excerciseService.Delete(id);

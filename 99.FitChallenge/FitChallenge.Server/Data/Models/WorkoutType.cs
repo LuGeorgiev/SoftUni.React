@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace FitChallenge.Server.Data.Models
 {
     [Index(nameof(Name), IsUnique = true)]
-    public class WorkoutType : Entity
+    public class WorkoutType : DeletableEntity
     {
         public int Id { get; set; }
 

@@ -24,7 +24,7 @@ namespace FitChallenge.Server.Infrastructure.Extensions
                 .UseSwaggerUI(c => 
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "FitChallenge.Server v1");
-                    c.RoutePrefix = string.Empty;
+                    //c.RoutePrefix = string.Empty;
                 });
     }
 }

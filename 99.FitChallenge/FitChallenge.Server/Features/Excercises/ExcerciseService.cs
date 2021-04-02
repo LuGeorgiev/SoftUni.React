@@ -113,7 +113,7 @@ namespace FitChallenge.Server.Features.Excercises
             => await this.mapper
                 .ProjectTo<ExcerciseOutputModel>( 
                     db.Excercises
-                    .Where(x => x.Name.Contains(name, System.StringComparison.InvariantCultureIgnoreCase) && x.IsDeleted == false))
+                    .Where(x => x.Name.Contains(name) && x.IsDeleted == false))
                 .ToListAsync();
             
 

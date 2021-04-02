@@ -21,13 +21,12 @@ namespace FitChallenge.Server.Features.WorkoutTypes
             this.mapper = mapper;
         }
 
-        public async Task<IEnumerable<WorkoutTypeOutputModel>> ContainsName(string name)
+        public async Task<Result<IEnumerable<WorkoutTypeOutputModel>>> ContainsName(string name)
             => await mapper
                 .ProjectTo<WorkoutTypeOutputModel>(
                     db.WorkoutTypes
-                        .Where(wt => wt.Name.Contains(name, StringComparison.InvariantCultureIgnoreCase)))
+                        .Where(wt => wt.Name.Contains(name) && wt.IsDeleted == false))
                 .ToListAsync();
-
         public async Task<WorkoutTypeOutputModel> Create(WorkoutTypeCreateModel model)
         {
             var workoutType = new WorkoutType
@@ -42,9 +41,18 @@ namespace FitChallenge.Server.Features.WorkoutTypes
             return mapper.Map<WorkoutTypeOutputModel>(workoutType);
         }
 
+        public async Task<Result> Delete(int id)
+        {
+            var result = await db.WorkoutTypes.FirstOrDefaultAsync(x => x.Id == id);
+
+            return result == null 
+                ? Result.Failure("Not Found") 
+                : Result.Success ;
+        }
+
         public async Task<WorkoutTypeOutputModel> Edit(WorkoutTypeEditModel model)
         {
-            var workoutType = await db.WorkoutTypes.FirstOrDefaultAsync(x => x.Id == model.Id);
+            var workoutType = await db.WorkoutTypes.FirstOrDefaultAsync(x => x.Id == model.Id && x.IsDeleted == false);
             if (workoutType == null)
             {
                 return null;
@@ -65,14 +73,14 @@ namespace FitChallenge.Server.Features.WorkoutTypes
             return mapper.Map<WorkoutTypeOutputModel>(workoutType);
         }
 
-        public async Task<IEnumerable<WorkoutTypeListingModel>> GetAll()
+        public async Task<Result<IEnumerable<WorkoutTypeListingModel>>> GetAll()
             => await mapper
-                .ProjectTo<WorkoutTypeListingModel>(db.WorkoutTypes)
+                .ProjectTo<WorkoutTypeListingModel>(db.WorkoutTypes.Where(x => x.IsDeleted == false))
                 .ToListAsync();
 
         public async Task<WorkoutTypeOutputModel> GetById(int id)
         {
-            var wt = await db.WorkoutTypes.FirstOrDefaultAsync(x => x.Id == id);
+            var wt = await db.WorkoutTypes.FirstOrDefaultAsync(x => x.Id == id && x.IsDeleted == false);
             if (wt == null)
             {
                 return null;

@@ -16,5 +16,11 @@
             public const string InvalidCredentials = "Ivalid user credentials";
             public const string AuthenticationCookieName = "Authentication";
         }
+
+        public class Controllers
+        {
+            public const string Id = "{id}";
+            public const string Name = "{name}";
+        }
     }
 }

@@ -6,6 +6,8 @@ using FitChallenge.Server.Data.Models;
 using FitChallenge.Server.Data.Seed;
 using FitChallenge.Server.Features.Excercises;
 using FitChallenge.Server.Features.Identity;
+using FitChallenge.Server.Features.Workouts;
+using FitChallenge.Server.Features.WorkoutTypes;
 using FitChallenge.Server.Infrastructure.Filters;
 using FitChallenge.Server.Infrastructure.Mapping;
 using FitChallenge.Server.Infrastructure.Services;
@@ -72,7 +74,9 @@ namespace FitChallenge.Server.Infrastructure.Extensions
                 .AddTransient<IDataSeeder, DataSeeder>()
                 .AddScoped<ITokenGeneratorService, TokenGeneratorService>()
                 .AddScoped<IIdentityService, IdentityService>()
-                .AddTransient<IExcerciseService, ExcerciseService>();
+                .AddTransient<IExcerciseService, ExcerciseService>()
+                .AddTransient<IWorkoutTypeService, WorkoutTypeService>()
+                .AddTransient<IWorkoutService, WorkoutService>();
 
         public static IServiceCollection AddSwagger(this IServiceCollection services)
             => services.AddSwaggerGen(c =>

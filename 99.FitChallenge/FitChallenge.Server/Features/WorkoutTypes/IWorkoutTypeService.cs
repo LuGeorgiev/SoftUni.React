@@ -8,12 +8,14 @@ namespace FitChallenge.Server.Features.WorkoutTypes
     {
         Task<WorkoutTypeOutputModel> GetById(int id);
 
-        Task<IEnumerable<WorkoutTypeOutputModel>> ContainsName(string name);
+        Task<Result<IEnumerable<WorkoutTypeOutputModel>>> ContainsName(string name);
 
-        Task<IEnumerable<WorkoutTypeListingModel>> GetAll();
+        Task<Result<IEnumerable<WorkoutTypeListingModel>>> GetAll();
 
         Task<WorkoutTypeOutputModel> Create(WorkoutTypeCreateModel model);
 
         Task<WorkoutTypeOutputModel> Edit(WorkoutTypeEditModel model);
+
+        Task<Result> Delete(int id);
     }
 }

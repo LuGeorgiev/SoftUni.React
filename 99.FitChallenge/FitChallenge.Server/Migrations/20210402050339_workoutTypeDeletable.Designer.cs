@@ -4,14 +4,16 @@ using FitChallenge.Server.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FitChallenge.Server.Migrations
 {
     [DbContext(typeof(FitChallengeDbContext))]
-    partial class FitChallengeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210402050339_workoutTypeDeletable")]
+    partial class workoutTypeDeletable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -80,30 +82,6 @@ namespace FitChallenge.Server.Migrations
 
                     b.Property<int>("WorkoutId")
                         .HasColumnType("int");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("DeletedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DeletedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ExecutionOrder")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ModifiedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Repetitions")
                         .IsRequired()
@@ -342,7 +320,7 @@ namespace FitChallenge.Server.Migrations
                         {
                             Id = 1,
                             CreatedBy = "Db migration",
-                            CreatedOn = new DateTime(2021, 4, 2, 5, 59, 34, 427, DateTimeKind.Utc).AddTicks(7652),
+                            CreatedOn = new DateTime(2021, 4, 2, 5, 3, 38, 525, DateTimeKind.Utc).AddTicks(2558),
                             Description = "Every minute on the minute.",
                             IsDeleted = false,
                             Name = "EMOM"
@@ -351,7 +329,7 @@ namespace FitChallenge.Server.Migrations
                         {
                             Id = 2,
                             CreatedBy = "Db migration",
-                            CreatedOn = new DateTime(2021, 4, 2, 5, 59, 34, 427, DateTimeKind.Utc).AddTicks(8446),
+                            CreatedOn = new DateTime(2021, 4, 2, 5, 3, 38, 525, DateTimeKind.Utc).AddTicks(3347),
                             Description = "As many rounds as possible.",
                             IsDeleted = false,
                             Name = "AMRAP"
@@ -360,7 +338,7 @@ namespace FitChallenge.Server.Migrations
                         {
                             Id = 3,
                             CreatedBy = "Db migration",
-                            CreatedOn = new DateTime(2021, 4, 2, 5, 59, 34, 427, DateTimeKind.Utc).AddTicks(8449),
+                            CreatedOn = new DateTime(2021, 4, 2, 5, 3, 38, 525, DateTimeKind.Utc).AddTicks(3350),
                             Description = "Rounds for time.",
                             IsDeleted = false,
                             Name = "RFT"
@@ -369,7 +347,7 @@ namespace FitChallenge.Server.Migrations
                         {
                             Id = 4,
                             CreatedBy = "Db migration",
-                            CreatedOn = new DateTime(2021, 4, 2, 5, 59, 34, 427, DateTimeKind.Utc).AddTicks(8450),
+                            CreatedOn = new DateTime(2021, 4, 2, 5, 3, 38, 525, DateTimeKind.Utc).AddTicks(3352),
                             Description = "A one-round series of exercises, usually with high reps, to be completed in the fastest time possible.",
                             IsDeleted = false,
                             Name = "CHIPPER"
@@ -378,7 +356,7 @@ namespace FitChallenge.Server.Migrations
                         {
                             Id = 5,
                             CreatedBy = "Db migration",
-                            CreatedOn = new DateTime(2021, 4, 2, 5, 59, 34, 427, DateTimeKind.Utc).AddTicks(8452),
+                            CreatedOn = new DateTime(2021, 4, 2, 5, 3, 38, 525, DateTimeKind.Utc).AddTicks(3353),
                             Description = "One or more movements, increasing or decreasing the workload over time",
                             IsDeleted = false,
                             Name = "LADDER"
@@ -387,7 +365,7 @@ namespace FitChallenge.Server.Migrations
                         {
                             Id = 6,
                             CreatedBy = "Db migration",
-                            CreatedOn = new DateTime(2021, 4, 2, 5, 59, 34, 427, DateTimeKind.Utc).AddTicks(8456),
+                            CreatedOn = new DateTime(2021, 4, 2, 5, 3, 38, 525, DateTimeKind.Utc).AddTicks(3358),
                             Description = "Do eight rounds of high-intensity intervals, alternating 20 seconds effort with 10 seconds rest.",
                             IsDeleted = false,
                             Name = "TABATA"

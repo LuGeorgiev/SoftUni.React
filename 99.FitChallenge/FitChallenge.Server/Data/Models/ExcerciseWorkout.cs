@@ -1,11 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
+using FitChallenge.Server.Data.Models.Base;
 
 namespace FitChallenge.Server.Data.Models
-{    
-    public class ExcerciseWorkout 
+{
+    public class ExcerciseWorkout : DeletableEntity
     {
         public int ExcerciseId { get; set; }
 
@@ -18,7 +18,11 @@ namespace FitChallenge.Server.Data.Models
         public Workout Workout { get; set; }
 
         [Required]
-        [Range(2,200)]
+        [Range(1, 200)]
         public string Repetitions { get; set; }
+
+        [Required]
+        [Range(0, 20)]
+        public int ExecutionOrder { get; set; }
     }
 }
