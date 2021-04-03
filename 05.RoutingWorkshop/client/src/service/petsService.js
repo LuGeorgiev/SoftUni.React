@@ -3,7 +3,7 @@ const url = 'http://localhost:3001/pets';
 
 export const getAll = (category = '') => {
 
-    let petUrl = url + ((category && category != 'All')
+    let petUrl = url + ((category && category !== 'All')
         ? `?category=${category}`
         : '');
     console.log(petUrl)
