@@ -33,7 +33,7 @@ namespace FitChallenge.Server.Features.Excercises
                 Url = model.Url
             };
 
-            var result = await db.AddAsync<Excercise>(excercise);
+            var result = await db.AddAsync(excercise);
             await db.SaveChangesAsync();
 
             return  mapper.Map<ExcerciseOutputModel>(result.Entity);
@@ -114,8 +114,7 @@ namespace FitChallenge.Server.Features.Excercises
                 .ProjectTo<ExcerciseOutputModel>( 
                     db.Excercises
                     .Where(x => x.Name.Contains(name) && x.IsDeleted == false))
-                .ToListAsync();
-            
+                .ToListAsync();            
 
         public async Task<Result<IEnumerable<ExcerciseListingModel>>> GetAll()
             => await mapper.ProjectTo<ExcerciseListingModel>(this.AllByType())

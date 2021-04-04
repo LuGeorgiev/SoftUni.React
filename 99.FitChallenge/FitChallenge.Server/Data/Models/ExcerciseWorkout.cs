@@ -18,7 +18,8 @@ namespace FitChallenge.Server.Data.Models
         public Workout Workout { get; set; }
 
         [Required]
-        [Range(1, 200)]
+        [MaxLength(200)]
+        [MinLength(1)]
         public string Repetitions { get; set; }
 
         [Required]

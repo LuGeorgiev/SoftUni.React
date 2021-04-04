@@ -25,6 +25,10 @@ namespace FitChallenge.Server.Features.Excercises
         public async Task<ActionResult<ExcerciseOutputModel>> Get(int id)
         {
             var result = await excerciseService.FindById(id);
+            if (result == null)
+            {
+                return BadRequest();
+            }
 
             return result;
         }

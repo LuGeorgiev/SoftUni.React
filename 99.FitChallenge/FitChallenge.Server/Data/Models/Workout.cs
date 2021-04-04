@@ -25,7 +25,7 @@ namespace FitChallenge.Server.Data.Models
         [Required]
         public string Description { get; set; }
 
-        public IEnumerable<ExcerciseWorkout> ExcerciseWorkouts { get; set; } = new HashSet<ExcerciseWorkout>();
+        public ICollection<ExcerciseWorkout> ExcerciseWorkouts { get; set; } = new HashSet<ExcerciseWorkout>();
 
     }
 }

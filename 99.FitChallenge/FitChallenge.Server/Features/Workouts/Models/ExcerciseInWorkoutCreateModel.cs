@@ -10,7 +10,8 @@ namespace FitChallenge.Server.Features.Workouts.Models
 
 
         [Required]
-        [Range(1, 200)]
+        [MaxLength(200)]
+        [MinLength(1)]
         public string Repetitions { get; set; }
 
         [Required]
