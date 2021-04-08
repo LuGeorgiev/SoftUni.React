@@ -11,8 +11,13 @@ import PetEdit from './components/PetEdit/PetEdit';
 import CreatePet from './components/CreatePet/CreatePet';
 import DemoPage from './components/Demo/Demo';
 
+import AdvancedTechniques from './components/AdvancedTechniques/AdvancedTechniques';
+import AdvancedRight from './components/AdvancedRight/AdvancedRight';
+
 import { auth } from './utils/firebase';
 import { useEffect, useState } from 'react';
+import AdvancedRightSecond from './components/AdvancedRightSecond/AdvancedRightSecond';
+import AdvancedRightThird from './components/AdvancedRightThird/AdvancedRightSecond';
 
 function App() {
     // console.log(process.env.NODE_ENV);
@@ -52,6 +57,11 @@ function App() {
                 }} />
 
                 <Route path="/demo" component={DemoPage} />
+                <Route path="/advanced-right-third" component={AdvancedRightThird} />
+                <Route path="/advanced-right-second" component={AdvancedRightSecond} />
+                <Route path="/advanced-right" component={AdvancedRight} />
+                <Route path="/advanced" component={AdvancedTechniques} />
+
             </Switch>
             <Footer />
         </div>
