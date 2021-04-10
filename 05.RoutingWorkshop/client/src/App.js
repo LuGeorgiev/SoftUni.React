@@ -13,11 +13,14 @@ import DemoPage from './components/Demo/Demo';
 
 import AdvancedTechniques from './components/AdvancedTechniques/AdvancedTechniques';
 import AdvancedRight from './components/AdvancedRight/AdvancedRight';
+import AdvancedRightSecond from './components/AdvancedRightSecond/AdvancedRightSecond';
+import AdvancedRightThird from './components/AdvancedRightThird/AdvancedRightSecond';
 
 import { auth } from './utils/firebase';
 import { useEffect, useState } from 'react';
-import AdvancedRightSecond from './components/AdvancedRightSecond/AdvancedRightSecond';
-import AdvancedRightThird from './components/AdvancedRightThird/AdvancedRightSecond';
+import CustomErrorBoundry from './components/CustomErrorBoundry/CustomErrorBoundry';
+import AuthContext from './contexts/AuthContext';
+import isAuth from './hoc/isAuth';
 
 function App() {
     // console.log(process.env.NODE_ENV);
@@ -30,7 +33,6 @@ function App() {
             if (authUser) {
                 var uid = authUser.uid;
                 console.log('logged in');
-                console.log(uid);
                 setUser(authUser);
             } else {
                 console.log('logged out');
@@ -42,28 +44,34 @@ function App() {
 
     return (
         <div className="container">
-            <Header username={user?.email} isAuthenticated={Boolean(user)} />
-            <Switch>
-                <Route path="/" exact component={Categories} />
-                <Route path="/categories/:category" component={Categories} />
-                <Route path="/pets/details/:petId" exact component={PetDetails} />
-                <Route path="/pets/details/:petId/edit" component={PetEdit} />
-                <Route path="/pets/create" component={CreatePet} />
-                <Route path="/login" component={Login} />
-                <Route path="/register" component={Register} />
-                <Route path="/logout" render={props => {
-                    auth.signOut();
-                    return <Redirect to="/" />
-                }} />
+            <AuthContext.Provider value={user}>
 
-                <Route path="/demo" component={DemoPage} />
-                <Route path="/advanced-right-third" component={AdvancedRightThird} />
-                <Route path="/advanced-right-second" component={AdvancedRightSecond} />
-                <Route path="/advanced-right" component={AdvancedRight} />
-                <Route path="/advanced" component={AdvancedTechniques} />
+                <Header username={user?.email} isAuthenticated={Boolean(user)} />
+                <CustomErrorBoundry>
+                    <Switch>
+                        <Route path="/" exact component={Categories} />
+                        <Route path="/categories/:category" component={Categories} />
+                        <Route path="/pets/details/:petId" exact component={PetDetails} />
+                        <Route path="/pets/details/:petId/edit" component={isAuth(PetEdit)} />
+                        <Route path="/pets/create" component={CreatePet} />
+                        <Route path="/login" component={Login} />
+                        <Route path="/register" component={Register} />
+                        <Route path="/logout" render={props => {
+                            auth.signOut();
+                            return <Redirect to="/" />
+                        }} />
 
-            </Switch>
-            <Footer />
+                        <Route path="/demo" component={DemoPage} />
+                        <Route path="/advanced-right-third" component={AdvancedRightThird} />
+                        <Route path="/advanced-right-second" component={AdvancedRightSecond} />
+                        <Route path="/advanced-right" component={AdvancedRight} />
+                        <Route path="/advanced" component={AdvancedTechniques} />
+
+                    </Switch>
+                </CustomErrorBoundry>
+                <Footer />
+
+            </AuthContext.Provider>
         </div>
     );
 }

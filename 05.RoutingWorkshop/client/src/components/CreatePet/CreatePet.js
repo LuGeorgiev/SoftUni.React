@@ -1,5 +1,5 @@
 import * as petServices from '../../service/petsService';
-
+import isAuth from '../../hoc/isAuth';
 const CreatePet = ({
     match,
     history,
@@ -63,4 +63,4 @@ const CreatePet = ({
     );
 }
 
-export default CreatePet;
+export default isAuth( CreatePet );

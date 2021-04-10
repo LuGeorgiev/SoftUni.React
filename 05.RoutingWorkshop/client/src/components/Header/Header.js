@@ -1,9 +1,12 @@
 import {Link} from 'react-router-dom'; 
+import AuthContext from '../../contexts/AuthContext';
 
 const Header = ({
     username,
     isAuthenticated,
 }) => {
+    const user = useContext(AuthContext); // right wau is with context
+
     return (
         <header id="site-header">
             <nav className="navbar">
